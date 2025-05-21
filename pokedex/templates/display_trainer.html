@@ -7,14 +7,15 @@
     <body>
         <div class="container">
             <div class="bg-primary text-white p-4 text-center">
-                <h1>Mi Pokedex</h1>
+                <h1>Entreandor: <strong>{{ trainer | capfirst }}</strong></h1>
             </div>
-            <p>Has elegido el pokemon: <strong>{{ pokemon | capfirst }}</strong></p>
             <h3>Características</h3>
             <ul>
-                <li>Tipo: {{pokemon.type | capfirst}} </li>
-                <li>Peso: {{pokemon.weight}} Kg</li>
-                <li>Altura: {{pokemon.height}} cm</li>
+                <li>Nombre: {{trainer.type | capfirst}} </li>
+                <li>Edad: {{trainer.age}} años</li>
+                <li>Peso: {{trainer.weight}} Kg</li>
+                <li>Altura: {{trainer.height}} cm</li>
+                <li>Número de pokemons capturados: <b>{{trainer.catch}}</b> pokemons</li>
             </ul>
         </div>
     </body>
