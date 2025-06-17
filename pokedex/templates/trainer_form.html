@@ -4,6 +4,35 @@
 {% block styles %}
 <link href="{% static 'custom.css' %}" rel="stylesheet">
 {% endblock styles %}
+
+{% block buttons_auth %}
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-2">
+    <div class="container-fluid">
+        <ul class="navbar-nav w-100 d-flex justify-content-between">
+            <div class="d-flex">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'pokedex:index' %}"><i class="fa-solid fa-house text-white" title="Inicio"></i></a>
+                </li>
+            </div>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'pokedex:index' %}"><i class="fa-solid fa-arrow-left text-white" title="Volver"></i> Volver</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+{% endblock buttons_auth %}
+{% block buttons_noauth %}
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-2">
+    <div class="container-fluid">
+        <ul class="navbar-nav w-100 d-flex justify-content-end">
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'pokedex:login' %}"><i class="fa-solid fa-right-to-bracket text-white" title="Login"></i></a>
+            </li>
+        </ul>
+    </div>
+</nav>
+{% endblock buttons_noauth %}
+
 {% block content %}
 <form method="post" enctype="multipart/form-data">
     {% csrf_token %}

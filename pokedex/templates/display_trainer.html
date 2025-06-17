@@ -1,13 +1,102 @@
 {% extends "base.html" %}
+{% load static %}
 {% block title %}{{ trainer }}{% endblock title %}
+{% block styles %}
+<link href="{% static 'custom.css' %}" rel="stylesheet">
+<style>
+    .card {
+        height: auto;
+    }
+</style>
+{% endblock styles %}
+{% block buttons_auth %}
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-2">
+    <div class="container-fluid">
+        <ul class="navbar-nav w-100 d-flex justify-content-between">
+            <div class="d-flex">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'pokedex:add_trainer' %}">Añadir Entrenador</a>
+                </li>
+            </div>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'logout' %}">Cerrar sesión</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+{% endblock buttons_auth %}
+{% block buttons_noauth %}
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-2">
+    <div class="container-fluid">
+        <ul class="navbar-nav w-100 d-flex justify-content-between">
+            <div class="d-flex">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'pokedex:index' %}"><i class="fa-solid fa-house text-white" title="Inicio"></i></a>
+                </li>
+            </div>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'pokedex:login' %}"><i class="fa-solid fa-right-to-bracket text-white" title="Login"></i></a>
+            </li>
+        </ul>
+    </div>
+</nav>
+{% endblock buttons_noauth %}
+
 {% block content %}
-<h3>Características</h3>
-<ul>
-    <li>Nombre: {{trainer.type | capfirst}} </li>
-    <li>Edad: {{trainer.age}} años</li>
-    <li>Peso: {{trainer.weight}} Kg</li>
-    <li>Altura: {{trainer.height}} cm</li>
-    <li>Número de pokemons capturados: <b>{{trainer.catch}}</b> pokemons</li>
-    <li><img src="{{trainer.picture.url}}" alt="{{ trainer.name }}" class="img-fluid"></li>
-</ul>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card shadow">
+                <div class="card-header bg-primary text-white text-center">
+                    <h3 class="mb-0">{{ trainer.name }}</h3>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-4 text-center mb-4" style="background-image: url({{trainer.picture.url}});background-size: contain;background-position: top center;background-repeat: no-repeat;">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card mb-3">
+                                <div class="card-header bg-light">
+                                    <h5 class="mb-0">Características</h5>
+                                </div>
+                                <div class="card-body">
+                                    <ul class="list-group list-group-flush">
+                                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                                            <span><i class="fa-solid fa-user me-2"></i> Nombre:</span>
+                                            <span class="">{{trainer.name | capfirst}}</span>
+                                        </li>
+                                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                                            <span><i class="fa-solid fa-cake-candles me-2"></i> Edad:</span>
+                                            <span class="">{{trainer.age}} años</span>
+                                        </li>
+                                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                                            <span><i class="fa-solid fa-weight-hanging me-2"></i> Peso:</span>
+                                            <span class="">{{trainer.weight}} Kg</span>
+                                        </li>
+                                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                                            <span><i class="fa-solid fa-ruler-vertical me-2"></i> Altura:</span>
+                                            <span class="">{{trainer.height}} cm</span>
+                                        </li>
+                                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                                            <span><i class="fa-solid fa-paw me-2"></i> Pokemons capturados:</span>
+                                            <span class=""><b>{{trainer.catch}}</b> pokemons</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="card-header bg-light">
+                                    <h5 class="mb-0">Descripción</h5>
+                                </div>
+                                <div class="card-body">
+                                    <p class="card-text">{{trainer.description}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock content %}
