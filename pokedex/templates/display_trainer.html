@@ -15,11 +15,11 @@
         <ul class="navbar-nav w-100 d-flex justify-content-between">
             <div class="d-flex">
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'pokedex:add_trainer' %}">Añadir Entrenador</a>
+                    <a class="nav-link" href="{% url 'pokedex:add_trainer' %}"><i class="fa-solid fa-plus-circle text-success" title="Añadir Entrenador"></i> Entrenador</a>
                 </li>
             </div>
             <li class="nav-item">
-                <a class="nav-link" href="{% url 'logout' %}">Cerrar sesión</a>
+                <a class="nav-link" href="{% url 'pokedex:index' %}"><i class="fa-solid fa-arrow-left text-white" title="Volver"></i> Volver</a>
             </li>
         </ul>
     </div>
