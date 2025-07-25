@@ -4,7 +4,7 @@ import base64
 from django.core.files.base import ContentFile
 
 class PokemonSerializer(serializers.ModelSerializer):
-    picture = serializers.CharField(required=True, allow_blank=False)
+    picture = serializers.CharField(required=False, allow_blank=True)
     
     class Meta:
         model = Pokemon
