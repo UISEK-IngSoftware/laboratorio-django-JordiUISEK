@@ -18,12 +18,15 @@ from django.contrib import admin
 from django.conf.urls.static import static
 from . import settings
 from django.urls import path, include
+from oauth2_provider import urls as oauth2_urls
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('pokedex.urls', namespace='pokedex')),
     path('accounts/', include('django.contrib.auth.urls')),
     path('api/', include('api.urls', namespace='api')),
+    path('o/', include(oauth2_urls)),
+
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
