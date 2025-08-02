@@ -1,0 +1,576 @@
+{
+	"info": {
+		"_postman_id": "pokedex-api-collection",
+		"name": "Pokedex API - Laboratorio 8 - JordiUISEK",
+		"description": "Colección completa para probar la API REST de la aplicación Pokedex con Django. Incluye endpoints para Pokemon, Entrenadores y autenticación OAuth2.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "pokedex-api"
+	},
+	"item": [
+		{
+			"name": "OAuth2 Authentication",
+			"item": [
+				{
+					"name": "Get OAuth2 Token",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "grant_type",
+									"value": "password",
+									"description": "Tipo de concesión OAuth2"
+								},
+								{
+									"key": "username",
+									"value": "jordi",
+									"description": "Nombre de usuario"
+								},
+								{
+									"key": "password",
+									"value": "jordi",
+									"description": "Contraseña del usuario"
+								},
+								{
+									"key": "client_id",
+									"value": "{{client_id}}",
+									"description": "ID del cliente OAuth2"
+								},
+								{
+									"key": "client_secret",
+									"value": "{{client_secret}}",
+									"description": "Secreto del cliente OAuth2"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/o/token/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"o",
+								"token",
+								""
+							]
+						},
+						"description": "Obtener token de acceso OAuth2 usando credenciales de usuario"
+					},
+					"response": []
+				},
+				{
+					"name": "Revoke OAuth2 Token",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"description": "Token de acceso a revocar"
+								},
+								{
+									"key": "client_id",
+									"value": "{{client_id}}",
+									"description": "ID del cliente OAuth2"
+								},
+								{
+									"key": "client_secret",
+									"value": "{{client_secret}}",
+									"description": "Secreto del cliente OAuth2"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/o/revoke_token/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"o",
+								"revoke_token",
+								""
+							]
+						},
+						"description": "Revocar token de acceso OAuth2"
+					},
+					"response": []
+				}
+			],
+			"description": "Endpoints para autenticación OAuth2"
+		},
+		{
+			"name": "Pokemon API",
+			"item": [
+				{
+					"name": "Get All Pokemon",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/pokemons/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"pokemons",
+								""
+							]
+						},
+						"description": "Obtener lista de todos los Pokemon (acceso público)"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Pokemon by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/pokemons/{{pokemon_id}}/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"pokemons",
+								"{{pokemon_id}}",
+								""
+							]
+						},
+						"description": "Obtener Pokemon específico por ID (acceso público)"
+					},
+					"response": []
+				},
+				{
+					"name": "Create Pokemon",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"description": "Token de acceso OAuth2"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Pikachu\",\n    \"type\": \"Electrico\",\n    \"weight\": 6,\n    \"height\": 40,\n    \"description\": \"Un Pokemon eléctrico muy popular con poderes de electricidad\",\n    \"picture\": \"\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/pokemons/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"pokemons",
+								""
+							]
+						},
+						"description": "Crear nuevo Pokemon (requiere autenticación)"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Pokemon",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"description": "Token de acceso OAuth2"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Pikachu Actualizado\",\n    \"type\": \"Electrico\",\n    \"weight\": 7,\n    \"height\": 42,\n    \"description\": \"Pikachu actualizado con nueva información\",\n    \"picture\": \"\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/pokemons/{{pokemon_id}}/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"pokemons",
+								"{{pokemon_id}}",
+								""
+							]
+						},
+						"description": "Actualizar Pokemon completo (requiere autenticación)"
+					},
+					"response": []
+				},
+				{
+					"name": "Partial Update Pokemon",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"description": "Token de acceso OAuth2"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"description\": \"Descripción actualizada del Pokemon\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/pokemons/{{pokemon_id}}/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"pokemons",
+								"{{pokemon_id}}",
+								""
+							]
+						},
+						"description": "Actualizar parcialmente Pokemon (requiere autenticación)"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Pokemon",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"description": "Token de acceso OAuth2"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/pokemons/{{pokemon_id}}/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"pokemons",
+								"{{pokemon_id}}",
+								""
+							]
+						},
+						"description": "Eliminar Pokemon (requiere autenticación)"
+					},
+					"response": []
+				}
+			],
+			"description": "Endpoints para gestión de Pokemon"
+		},
+		{
+			"name": "Trainer API",
+			"item": [
+				{
+					"name": "Get All Trainers",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/trainers/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"trainers",
+								""
+							]
+						},
+						"description": "Obtener lista de todos los Entrenadores (acceso público)"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Trainer by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/trainers/{{trainer_id}}/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"trainers",
+								"{{trainer_id}}",
+								""
+							]
+						},
+						"description": "Obtener Entrenador específico por ID (acceso público)"
+					},
+					"response": []
+				},
+				{
+					"name": "Create Trainer",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"description": "Token de acceso OAuth2"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Ash Ketchum\",\n    \"age\": 10,\n    \"weight\": 45,\n    \"height\": 140,\n    \"catch\": 151,\n    \"description\": \"Entrenador Pokemon legendario de Pallet Town\",\n    \"picture\": \"\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/trainers/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"trainers",
+								""
+							]
+						},
+						"description": "Crear nuevo Entrenador (requiere autenticación)"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Trainer",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"description": "Token de acceso OAuth2"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Ash Ketchum Actualizado\",\n    \"age\": 11,\n    \"weight\": 47,\n    \"height\": 142,\n    \"catch\": 152,\n    \"description\": \"Ash Ketchum actualizado con nueva información\",\n    \"picture\": \"\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/trainers/{{trainer_id}}/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"trainers",
+								"{{trainer_id}}",
+								""
+							]
+						},
+						"description": "Actualizar Entrenador completo (requiere autenticación)"
+					},
+					"response": []
+				},
+				{
+					"name": "Partial Update Trainer",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"description": "Token de acceso OAuth2"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"catch\": 153,\n    \"description\": \"Descripción actualizada del Entrenador\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/trainers/{{trainer_id}}/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"trainers",
+								"{{trainer_id}}",
+								""
+							]
+						},
+						"description": "Actualizar parcialmente Entrenador (requiere autenticación)"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Trainer",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"description": "Token de acceso OAuth2"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/trainers/{{trainer_id}}/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"trainers",
+								"{{trainer_id}}",
+								""
+							]
+						},
+						"description": "Eliminar Entrenador (requiere autenticación)"
+					},
+					"response": []
+				}
+			],
+			"description": "Endpoints para gestión de Entrenadores"
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"// Script para manejar automáticamente la autenticación",
+					"if (pm.request.headers.has('Authorization')) {",
+					"    console.log('Request autenticado con OAuth2');",
+					"}"
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"// Tests automáticos para verificar respuestas",
+					"pm.test('Status code is 200 or 201', function () {",
+					"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+					"});",
+					"",
+					"pm.test('Response has required fields', function () {",
+					"    if (pm.response.code === 200 || pm.response.code === 201) {",
+					"        const jsonData = pm.response.json();",
+					"        if (jsonData && typeof jsonData === 'object') {",
+					"            pm.expect(jsonData).to.have.property('id');",
+					"        }",
+					"    }",
+					"});"
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:8000",
+			"type": "string",
+			"description": "URL base del servidor Django"
+		},
+		{
+			"key": "access_token",
+			"value": "",
+			"type": "string",
+			"description": "Token de acceso OAuth2 (se obtiene del endpoint Get OAuth2 Token)"
+		},
+		{
+			"key": "client_id",
+			"value": "",
+			"type": "string",
+			"description": "ID del cliente OAuth2 (configurar en Django admin)"
+		},
+		{
+			"key": "client_secret",
+			"value": "",
+			"type": "string",
+			"description": "Secreto del cliente OAuth2 (configurar en Django admin)"
+		},
+		{
+			"key": "pokemon_id",
+			"value": "1",
+			"type": "string",
+			"description": "ID del Pokemon para pruebas"
+		},
+		{
+			"key": "trainer_id",
+			"value": "1",
+			"type": "string",
+			"description": "ID del Entrenador para pruebas"
+		}
+	]
+} 
