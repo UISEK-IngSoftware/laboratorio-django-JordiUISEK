@@ -1,243 +1,265 @@
-# Laboratorio 8. Taller Inicial de Django: Views, Templates y Modelos
+![Pokedex](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7wZrdn7upNp8rQQaLJU_2dw-irIDQeNsnIQ&s)
 
-Este laboratorio está diseñado para que los participantes puedan aprender y reforzar sus conocimientos de Python, HTML y CSS mediante la creación de una lista de Pokemones y una página de detalle. Utilizando como framework de desarrollo MVC a Django. De la misma manera se hará una introducción a Bootstrap para el uso de librerías de Interfaz de usuario en HTML.
+![Django](https://img.shields.io/badge/Django-092E20?style=for-the-badge&logo=django&logoColor=white)
+![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![SQLite](https://img.shields.io/badge/SQLite-07405E?style=for-the-badge&logo=sqlite&logoColor=white)
+![Bootstrap](https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white)
+![Django REST Framework](https://img.shields.io/badge/Django_REST_Framework-092E20?style=for-the-badge&logo=django&logoColor=white)
+![OAuth2](https://img.shields.io/badge/OAuth2-000000?style=for-the-badge&logo=oauth&logoColor=white)
+![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
+![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white)
+![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)
 
-Por otra parte se aplica el uso de Modelos en Django y uso de bases de datos relacionales en PostgreSQL.
+# Laboratorio 8: Aplicación Pokedex con Django
 
-## Objetivos 
-- El estudiante debe ser capaz de reconocer y aplicar conceptos básicos del Paradigma Orientado a Objetos (POO) como: Clases, Objetos, Atributos, Métodos. Así mismo el presente proyecto introduce al desarrollo de aplicaciones Web mediante el uso de Django como marco de trabajo para el desarrollo.
-- El estudiante reforzará sus conocimientos de POO y manejo de bases de datos relacionales a través del uso de modelos en Django.
+## Descripción del Proyecto
 
-## Tareas a realizar
-1. Generación de Modelos de Pokemon y Trainer.
-2. Generación de migraciones.
-3. Despliegue de Pokemones en Templates lista y detalle.
-4. Despliegue de Entrenadores en Templates lista y detalle.
+Este proyecto es una aplicación web desarrollada con Django que simula una Pokedex digital. Permite gestionar información de Pokemon y Entrenadores, incluyendo funcionalidades CRUD completas, API REST, autenticación OAuth2 y una interfaz web moderna con Bootstrap.
 
-## Instalación del ambiente
+## Características Principales
 
-### Requerimientos
+- **Gestión de Pokemon**: Crear, leer, actualizar y eliminar información de Pokemon
+- **Gestión de Entrenadores**: Administrar datos de entrenadores Pokemon
+- **API REST**: Endpoints completos para Pokemon y Entrenadores
+- **Autenticación OAuth2**: Sistema de autenticación seguro
+- **Interfaz Web**: Templates HTML con Bootstrap para una experiencia de usuario moderna
+- **Base de Datos SQLite**: Almacenamiento local y portable
+- **Procesamiento de Imágenes**: Carga y gestión de imágenes de Pokemon y Entrenadores
+- **CORS Configurado**: Permite comunicación entre diferentes dominios
+
+## Estructura del Proyecto
+
+```
+laboratorio-django-JordiUISEK/
+├── api/                    # Aplicación para API REST
+│   ├── serializers.py     # Serializers para Pokemon y Trainer
+│   ├── views.py          # Vistas de la API
+│   └── urls.py           # URLs de la API
+├── lab8/                  # Configuración principal del proyecto
+│   ├── settings.py       # Configuración de Django
+│   └── urls.py          # URLs principales
+├── pokedex/              # Aplicación principal
+│   ├── models.py        # Modelos Pokemon y Trainer
+│   ├── views.py         # Vistas web
+│   ├── templates/       # Templates HTML
+│   └── static/          # Archivos estáticos (CSS, JS, imágenes)
+├── media/               # Archivos multimedia subidos
+│   ├── pokemon_images/  # Imágenes de Pokemon
+│   └── trainer_images/  # Imágenes de Entrenadores
+└── requirements.txt     # Dependencias del proyecto
+```
+
+## Modelos de Datos
+
+### Pokemon
+- **name**: Nombre del Pokemon (CharField, max_length=40)
+- **type**: Tipo del Pokemon (CharField, max_length=30)
+- **weight**: Peso del Pokemon (IntegerField)
+- **height**: Altura del Pokemon (IntegerField)
+- **description**: Descripción opcional (CharField, max_length=150)
+- **picture**: Imagen del Pokemon (ImageField)
+
+### Trainer
+- **name**: Nombre del Entrenador (CharField, max_length=40)
+- **age**: Edad del Entrenador (IntegerField)
+- **weight**: Peso del Entrenador (IntegerField)
+- **height**: Altura del Entrenador (IntegerField)
+- **catch**: Número de Pokemon capturados (IntegerField)
+- **description**: Descripción opcional (CharField, max_length=150)
+- **picture**: Imagen del Entrenador (ImageField)
+
+## Tecnologías Utilizadas
+
+- **Backend**: Django 5.2.4
+- **Lenguaje**: Python 3.10+
+- **Base de Datos**: SQLite (incluido con Python)
+- **API**: Django REST Framework 3.16.0
+- **Autenticación**: OAuth2 con django-oauth-toolkit
+- **Frontend**: HTML5, CSS3, Bootstrap 5.3.6
+- **Procesamiento de Imágenes**: Pillow 11.2.1
+- **CORS**: django-cors-headers 4.7.0
+
+## Instalación y Configuración
+
+### Requisitos Previos
 
 - Python 3.10 o superior
-- PostgreSQL
+- Git
 
-### Linux
-#### Instalación de gestor de ambientes virtuales de Python
-```bash
-sudo apt install python3-venv
-```
-#### Creación y activación del ambiente virtual
-```bash
-python3 -m venv .venv
-source .venv/bin/activate
-```
-#### Instalación de dependencias de este proyecto
-```bash
-pip3 install -r requirements.txt
-```
-#### Desactivación del ambiente
-```bash
-deactivate
-```
+### Instalación
 
-### MacOS
-#### Instalación de gestor de ambientes virtuales de Python
-```bash
-python3 -m venv .venv
-```
-#### Creación y activación del ambiente virtual
-```bash
-python3 -m venv .venv
-source .venv/bin/activate
-```
-#### Instalación de dependencias de este proyecto
-```bash
-pip3 install -r requirements.txt
-```
-#### Desactivación del ambiente
-```bash
-deactivate
-```
+1. **Clonar el repositorio**
+   ```bash
+   git clone <url-del-repositorio>
+   cd laboratorio-django-JordiUISEK
+   ```
 
-### Windows
-#### Instalación de gestor de ambientes virtuales de Python
-```bash
-pip install virtualenv
-```
-#### Creación del ambiente virtual
-```bash
-py -m venv .venv
-```
-#### Activación del ambiente virtual para CMD
-```bash
-.venv\Scripts\activate
-```
-#### Activación del ambiente virtual para PowerShell
-```bash
-.venv\Scripts\activate.ps1
-```
-#### Instalación de dependencias de este proyecto
-```bash
-pip install -r requirements.txt
-```
-#### Desactivación del ambiente
-```bash
-deactivate
-```
+2. **Crear ambiente virtual**
+   ```bash
+   python3 -m venv .venv
+   source .venv/bin/activate  # Linux/MacOS
+   # o
+   .venv\Scripts\activate     # Windows
+   ```
 
-## Comandos útiles
+3. **Instalar dependencias**
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-### Iniciar servidor
-#### Linux o MacOS
+4. **Configurar variables de entorno**
+   Crear un archivo `.env` en la raíz del proyecto:
+   ```
+   SECRET_KEY=tu-clave-secreta-aqui
+   DEBUG=True
+   ```
+
+5. **Ejecutar migraciones**
+   ```bash
+   python manage.py makemigrations
+   python manage.py migrate
+   ```
+
+6. **Crear superusuario**
+   ```bash
+   python manage.py createsuperuser
+   ```
+
+7. **Iniciar servidor**
+   ```bash
+   python manage.py runserver
+   ```
+
+## Uso de la Aplicación
+
+### Interfaz Web
+- Acceder a `http://localhost:8000` para la interfaz principal
+- Navegar a `/admin` para el panel de administración
+- Usar los formularios para crear y editar Pokemon y Entrenadores
+
+### API REST
+- **Pokemon**: `/api/pokemon/`
+- **Entrenadores**: `/api/trainer/`
+- **Autenticación**: OAuth2 endpoints disponibles
+
+### Comandos Útiles
+
 ```bash
-python3 manage.py runserver
-```
-#### Windows
-```bash
+# Iniciar servidor de desarrollo
 python manage.py runserver
-```
 
-### Crear nueva aplicación
-#### Linux o MacOS
-```bash
-python3 manage.py startapp <nombre_de_la_aplicacion>
-```
-#### Windows
-```bash
-python manage.py startapp <nombre_de_la_aplicacion>
-```
+# Crear nueva aplicación
+python manage.py startapp nombre_app
 
-### Crear Súper Usuario
-#### Linux o MacOS
-```bash
-python3 manage.py createsuperuser
-```
-#### Windows
-```bash
+# Crear superusuario
 python manage.py createsuperuser
-```
 
-### Generar archivos de migración
-#### Linux o MacOS
-```bash
-python3 manage.py makemigrations
-```
-#### Windows
-```bash
+# Generar migraciones
 python manage.py makemigrations
-```
 
-### Migrar a bases de datos
-#### Linux o MacOS
-```bash
-python3 manage.py migrate
-```
-#### Windows
-```bash
+# Aplicar migraciones
 python manage.py migrate
+
+# Ejecutar tests
+python manage.py test
+
+# Recolectar archivos estáticos
+python manage.py collectstatic
 ```
 
-### Almacenar dependencias y librerías instaladas
-#### Linux o MacOS
-```bash
-pip3 freeze > requirements.txt
+## Configuración de Base de Datos
+
+### SQLite (Configuración por defecto)
+```python
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
 ```
-#### Windows
-```bash
-pip freeze > requirements.txt
+
+### Variables de Entorno
+Crear archivo `.env` en la raíz del proyecto:
+```env
+SECRET_KEY=tu-clave-secreta-aqui
+DEBUG=True
+ALLOWED_HOSTS=localhost,127.0.0.1
+CORS_ALLOWED_ORIGINS=http://localhost:3000,http://127.0.0.1:3000
 ```
 
-# Nota
-Para los siguientes pasos se deberán seguir las instrucciones del docente en clase. No olvide que puedes contactarlo a <paperez@puce.edu.ec> o a <pablo.perez@uisek.edu.ec> dependiendo de la institución donde te encuentres.
+### Configuración de Media Files
+```python
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
+```
 
-# Ejemplos de Cadenas de Conexión para Django
+### Configuración de Static Files
+```python
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    BASE_DIR / 'static',
+]
+```
 
-### PostgreSQL
-- Instalar psycopg2
-    ```bash
-    pip3 install psycopg2
-    ```
-- Configurar archivo settings.py
-    ```python
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql',
-            'NAME': 'nombre_de_tu_base_de_datos',
-            'USER': 'tu_usuario',
-            'PASSWORD': 'tu_contraseña',
-            'HOST': 'localhost',
-            'PORT': '5432',
-        }
-    }
-    ```
+## Usuario de acceso
+- **Usuario:** jordi
+- **Contraseña:** jordi
 
-### MySQL
-- Instalar mysqlclient
-    ```bash
-    pip3 install mysqlclient
-    ```
-- Configurar archivo settings.py
-    ```python
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.mysql',
-            'NAME': 'nombre_de_tu_base_de_datos',
-            'USER': 'tu_usuario',
-            'PASSWORD': 'tu_contraseña',
-            'HOST': 'localhost',
-            'PORT': '3306',
-        }
-    }
-    ```
+## Deployment
 
-### SQLite
-- Configurar archivo settings.py
-    ```python
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': BASE_DIR / 'db.sqlite3',
-        }
-    }
-    ```
+### Configuración para Producción
+1. Cambiar `DEBUG = False`
+2. Configurar `ALLOWED_HOSTS`
+3. Configurar base de datos de producción
+4. Configurar variables de entorno
+5. Ejecutar `python manage.py collectstatic`
+6. Configurar servidor web (Nginx, Apache)
 
-### Oracle
-- Instalar cx_Oracle
-    ```bash
-    pip3 install cx_Oracle
-    ```
-- Configurar archivo settings.py
-    ```python
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.oracle',
-            'NAME': 'nombre_de_tu_base_de_datos',
-            'USER': 'tu_usuario',
-            'PASSWORD': 'tu_contraseña',
-            'HOST': 'localhost',
-            'PORT': '1521',
-        }
-    }
-    ```
+### Docker (Opcional)
+```dockerfile
+FROM python:3.10
+WORKDIR /app
+COPY requirements.txt .
+RUN pip install -r requirements.txt
+COPY . .
+EXPOSE 8000
+CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+```
 
-### SQL Server (usando django-mssql-backend)
-- Instalar django-mssql-backend
-    ```bash
-    pip3 install django-mssql-backend
-    ```
-- Configurar archivo settings.py
-    ```python
-    DATABASES = {
-        'default': {
-            'ENGINE': 'sql_server.pyodbc',
-            'NAME': 'nombre_de_tu_base_de_datos',
-            'USER': 'tu_usuario',
-            'PASSWORD': 'tu_contraseña',
-            'HOST': 'localhost',
-            'PORT': '1433',
-            'OPTIONS': {
-                'driver': 'ODBC Driver 17 for SQL Server',
-            },
-        }
-    }
-    ```
+## Troubleshooting
+
+### Problemas Comunes
+
+1. **Error de migraciones**
+   ```bash
+   python manage.py makemigrations --empty pokedex
+   python manage.py migrate
+   ```
+
+2. **Error de permisos de archivos**
+   ```bash
+   chmod -R 755 media/
+   ```
+
+3. **Error de conexión a base de datos**
+   - Verificar que el archivo db.sqlite3 existe
+   - Verificar permisos de escritura en el directorio
+   - Ejecutar migraciones si es necesario
+
+4. **Error de CORS**
+   - Verificar configuración en settings.py
+   - Verificar origen de las peticiones
+
+## Laboratorio 9: Frontend
+
+Repositorio GIT API REST: https://github.com/UISEK-IngSoftware/laboratorio-9-JordiUISEK
+```
+git clone git@github.com:UISEK-IngSoftware/laboratorio-9-JordiUISEK.git
+```
+
+Ejecutar el servidor
+```
+npm run dev
+```

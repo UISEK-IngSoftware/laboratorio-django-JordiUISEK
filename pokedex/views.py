@@ -1,13 +1,19 @@
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
 from django.template import loader
+from django.contrib import messages
 from .models import Pokemon, Trainer
 from .forms import PokemonForm, TrainerForm
 from django.contrib.auth.views import LoginView
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth import logout
 
 class CustomLoginView(LoginView):
     template_name = 'login_form.html'
+
+def custom_logout(request):
+    logout(request)
+    return redirect('pokedex:index')
     
 def index(request):
     pokemons = Pokemon.objects.order_by("name")
@@ -58,7 +64,8 @@ def edit_pokemon(request, id: int):
         form = PokemonForm(request.POST, request.FILES, instance=pokemon)
         if form.is_valid():
             form.save()
-            return redirect('pokedex:index')
+            messages.success(request, f'Pokemon "{pokemon.name}" actualizado correctamente.')
+            return redirect('pokedex:pokemon', id=id)
     else:
         form = PokemonForm(instance=pokemon)
     return render (request, 'pokemon_form.html', {'form': form})
@@ -88,7 +95,8 @@ def edit_trainer(request, id: int):
         form = TrainerForm(request.POST, request.FILES, instance=trainer)
         if form.is_valid():
             form.save()
-            return redirect('pokedex:index')
+            messages.success(request, f'Entrenador "{trainer.name}" actualizado correctamente.')
+            return redirect('pokedex:trainer', id=id)
     else:
         form = TrainerForm(instance=trainer)
     return render (request, 'trainer_form.html', {'form': form})

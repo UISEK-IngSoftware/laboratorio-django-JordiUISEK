@@ -24,7 +24,7 @@ class PokemonSerializer(serializers.ModelSerializer):
         return None
 
 class TrainerSerializer(serializers.ModelSerializer):
-    picture = serializers.CharField(required=True, allow_blank=False)
+    picture = serializers.CharField(required=False, allow_blank=True)
     
     class Meta:
         model = Trainer

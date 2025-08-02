@@ -2,6 +2,7 @@
     <head>
         {% load static %}
         <title>{% block title %}{% endblock title %}</title>
+        <link rel="icon" type="image/svg+xml" href="{% static 'pokedex.svg' %}">
         <link href="{% static 'bootstrap.min.css' %}" rel="stylesheet">
         {% block styles %}{% endblock styles %}
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -21,6 +22,20 @@
             {% else %}
                 {% block buttons_noauth %}{% endblock buttons_noauth %}
             {% endif %}
+            
+            {% if messages %}
+                <div class="row mt-3">
+                    <div class="col-md-12">
+                        {% for message in messages %}
+                            <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                                {{ message }}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endif %}
+            
             {% block content %}{% endblock content %}
         </div>
     </body>
