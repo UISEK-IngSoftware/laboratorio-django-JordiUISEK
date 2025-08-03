@@ -40,21 +40,23 @@
 								},
 								{
 									"key": "client_id",
-									"value": "{{client_id}}",
+									"value": "SOiGve10n1jE1dKLGfjZC0dPJL7vHieYPjvN66yn",
 									"description": "ID del cliente OAuth2"
 								},
 								{
 									"key": "client_secret",
-									"value": "{{client_secret}}",
+									"value": "Zz6q5crg7ftaUbDX337vzP9BRaRyXUiQe7y8JZIwJNjZFJ55m1QP37Awt2wQ1iPILc7YxObVWDM50t6z5V8HXigpZWJXFYiegXe7k62Mwb79vY4U5wGSxUQiKUw54alD",
 									"description": "Secreto del cliente OAuth2"
 								}
 							]
 						},
 						"url": {
-							"raw": "{{base_url}}/o/token/",
+							"raw": "http://localhost:8000/o/token/",
+							"protocol": "http",
 							"host": [
-								"{{base_url}}"
+								"localhost"
 							],
+							"port": "8000",
 							"path": [
 								"o",
 								"token",
@@ -85,21 +87,23 @@
 								},
 								{
 									"key": "client_id",
-									"value": "{{client_id}}",
+									"value": "SOiGve10n1jE1dKLGfjZC0dPJL7vHieYPjvN66yn",
 									"description": "ID del cliente OAuth2"
 								},
 								{
 									"key": "client_secret",
-									"value": "{{client_secret}}",
+									"value": "Zz6q5crg7ftaUbDX337vzP9BRaRyXUiQe7y8JZIwJNjZFJ55m1QP37Awt2wQ1iPILc7YxObVWDM50t6z5V8HXigpZWJXFYiegXe7k62Mwb79vY4U5wGSxUQiKUw54alD",
 									"description": "Secreto del cliente OAuth2"
 								}
 							]
 						},
 						"url": {
-							"raw": "{{base_url}}/o/revoke_token/",
+							"raw": "http://localhost:8000/o/revoke_token/",
+							"protocol": "http",
 							"host": [
-								"{{base_url}}"
+								"localhost"
 							],
+							"port": "8000",
 							"path": [
 								"o",
 								"revoke_token",
@@ -122,10 +126,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/api/pokemons/",
+							"raw": "http://localhost:8000/api/pokemons/",
+							"protocol": "http",
 							"host": [
-								"{{base_url}}"
+								"localhost"
 							],
+							"port": "8000",
 							"path": [
 								"api",
 								"pokemons",
@@ -142,14 +148,16 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/api/pokemons/{{pokemon_id}}/",
+							"raw": "http://localhost:8000/api/pokemons/1/",
+							"protocol": "http",
 							"host": [
-								"{{base_url}}"
+								"localhost"
 							],
+							"port": "8000",
 							"path": [
 								"api",
 								"pokemons",
-								"{{pokemon_id}}",
+								"1",
 								""
 							]
 						},
@@ -182,10 +190,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{base_url}}/api/pokemons/",
+							"raw": "http://localhost:8000/api/pokemons/",
+							"protocol": "http",
 							"host": [
-								"{{base_url}}"
+								"localhost"
 							],
+							"port": "8000",
 							"path": [
 								"api",
 								"pokemons",
@@ -221,14 +231,16 @@
 							}
 						},
 						"url": {
-							"raw": "{{base_url}}/api/pokemons/{{pokemon_id}}/",
+							"raw": "http://localhost:8000/api/pokemons/1/",
+							"protocol": "http",
 							"host": [
-								"{{base_url}}"
+								"localhost"
 							],
+							"port": "8000",
 							"path": [
 								"api",
 								"pokemons",
-								"{{pokemon_id}}",
+								"1",
 								""
 							]
 						},
@@ -261,14 +273,16 @@
 							}
 						},
 						"url": {
-							"raw": "{{base_url}}/api/pokemons/{{pokemon_id}}/",
+							"raw": "http://localhost:8000/api/pokemons/1/",
+							"protocol": "http",
 							"host": [
-								"{{base_url}}"
+								"localhost"
 							],
+							"port": "8000",
 							"path": [
 								"api",
 								"pokemons",
-								"{{pokemon_id}}",
+								"1",
 								""
 							]
 						},
@@ -288,14 +302,16 @@
 							}
 						],
 						"url": {
-							"raw": "{{base_url}}/api/pokemons/{{pokemon_id}}/",
+							"raw": "http://localhost:8000/api/pokemons/1/",
+							"protocol": "http",
 							"host": [
-								"{{base_url}}"
+								"localhost"
 							],
+							"port": "8000",
 							"path": [
 								"api",
 								"pokemons",
-								"{{pokemon_id}}",
+								"1",
 								""
 							]
 						},
@@ -315,10 +331,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/api/trainers/",
+							"raw": "http://localhost:8000/api/trainers/",
+							"protocol": "http",
 							"host": [
-								"{{base_url}}"
+								"localhost"
 							],
+							"port": "8000",
 							"path": [
 								"api",
 								"trainers",
@@ -335,14 +353,16 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/api/trainers/{{trainer_id}}/",
+							"raw": "http://localhost:8000/api/trainers/1/",
+							"protocol": "http",
 							"host": [
-								"{{base_url}}"
+								"localhost"
 							],
+							"port": "8000",
 							"path": [
 								"api",
 								"trainers",
-								"{{trainer_id}}",
+								"1",
 								""
 							]
 						},
@@ -375,10 +395,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{base_url}}/api/trainers/",
+							"raw": "http://localhost:8000/api/trainers/",
+							"protocol": "http",
 							"host": [
-								"{{base_url}}"
+								"localhost"
 							],
+							"port": "8000",
 							"path": [
 								"api",
 								"trainers",
@@ -414,14 +436,16 @@
 							}
 						},
 						"url": {
-							"raw": "{{base_url}}/api/trainers/{{trainer_id}}/",
+							"raw": "http://localhost:8000/api/trainers/1/",
+							"protocol": "http",
 							"host": [
-								"{{base_url}}"
+								"localhost"
 							],
+							"port": "8000",
 							"path": [
 								"api",
 								"trainers",
-								"{{trainer_id}}",
+								"1",
 								""
 							]
 						},
@@ -454,14 +478,16 @@
 							}
 						},
 						"url": {
-							"raw": "{{base_url}}/api/trainers/{{trainer_id}}/",
+							"raw": "http://localhost:8000/api/trainers/1/",
+							"protocol": "http",
 							"host": [
-								"{{base_url}}"
+								"localhost"
 							],
+							"port": "8000",
 							"path": [
 								"api",
 								"trainers",
-								"{{trainer_id}}",
+								"1",
 								""
 							]
 						},
@@ -481,14 +507,16 @@
 							}
 						],
 						"url": {
-							"raw": "{{base_url}}/api/trainers/{{trainer_id}}/",
+							"raw": "http://localhost:8000/api/trainers/1/",
+							"protocol": "http",
 							"host": [
-								"{{base_url}}"
+								"localhost"
 							],
+							"port": "8000",
 							"path": [
 								"api",
 								"trainers",
-								"{{trainer_id}}",
+								"1",
 								""
 							]
 						},
@@ -509,6 +537,11 @@
 					"// Script para manejar automáticamente la autenticación",
 					"if (pm.request.headers.has('Authorization')) {",
 					"    console.log('Request autenticado con OAuth2');",
+					"}",
+					"",
+					"// Verificar que el token de acceso esté disponible",
+					"if (pm.request.headers.has('Authorization') && !pm.environment.get('access_token')) {",
+					"    console.warn('Token de acceso no encontrado. Ejecuta primero \"Get OAuth2 Token\"');",
 					"}"
 				]
 			}
@@ -530,7 +563,23 @@
 					"            pm.expect(jsonData).to.have.property('id');",
 					"        }",
 					"    }",
-					"});"
+					"});",
+					"",
+					"// Test específico para el endpoint de autenticación",
+					"if (pm.request.url.path.includes('/o/token/')) {",
+					"    pm.test('OAuth2 Token Response', function () {",
+					"        if (pm.response.code === 200) {",
+					"            const response = pm.response.json();",
+					"            pm.expect(response).to.have.property('access_token');",
+					"            pm.expect(response).to.have.property('token_type');",
+					"            pm.expect(response.token_type).to.eql('Bearer');",
+					"            ",
+					"            // Guardar el token automáticamente",
+					"            pm.environment.set('access_token', response.access_token);",
+					"            console.log('Token guardado automáticamente');",
+					"        }",
+					"    });",
+					"}"
 				]
 			}
 		}
@@ -550,15 +599,15 @@
 		},
 		{
 			"key": "client_id",
-			"value": "",
+			"value": "SOiGve10n1jE1dKLGfjZC0dPJL7vHieYPjvN66yn",
 			"type": "string",
-			"description": "ID del cliente OAuth2 (configurar en Django admin)"
+			"description": "ID del cliente OAuth2 configurado"
 		},
 		{
 			"key": "client_secret",
-			"value": "",
+			"value": "Zz6q5crg7ftaUbDX337vzP9BRaRyXUiQe7y8JZIwJNjZFJ55m1QP37Awt2wQ1iPILc7YxObVWDM50t6z5V8HXigpZWJXFYiegXe7k62Mwb79vY4U5wGSxUQiKUw54alD",
 			"type": "string",
-			"description": "Secreto del cliente OAuth2 (configurar en Django admin)"
+			"description": "Secreto del cliente OAuth2 configurado"
 		},
 		{
 			"key": "pokemon_id",
@@ -571,6 +620,18 @@
 			"value": "1",
 			"type": "string",
 			"description": "ID del Entrenador para pruebas"
+		},
+		{
+			"key": "username",
+			"value": "jordi",
+			"type": "string",
+			"description": "Nombre de usuario para autenticación"
+		},
+		{
+			"key": "password",
+			"value": "jordi",
+			"type": "string",
+			"description": "Contraseña del usuario para autenticación"
 		}
 	]
 } 
